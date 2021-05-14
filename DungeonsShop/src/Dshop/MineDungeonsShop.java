@@ -55,7 +55,7 @@ public class MineDungeonsShop extends JFrame{
 	JLabel resultados = new JLabel("");
 	JLabel totaleme = new JLabel("");
 	int Nresultados = 0;
-	int carteira = (int)(Math.random()*5000);
+	int carteira = (int)(Math.random()*10000);
 	
 	JLabel bg = new JLabel(new ImageIcon(getClass().getResource("BG.png")));
 	JLabel avisodinheiro = new JLabel(new ImageIcon(getClass().getResource("avisodinheiro232X38.png")));
@@ -206,7 +206,7 @@ public class MineDungeonsShop extends JFrame{
 		pnVideo.setLayout(new BorderLayout());
 		pnVideo.add(jfxpanel, BorderLayout.CENTER);
 		pnVideo.setBackground(null);
-		pnVideo.setLocation(0,98);
+		pnVideo.setLocation(10,98);
 	}
 	
 	public void painelitensinit() {
@@ -285,8 +285,8 @@ public class MineDungeonsShop extends JFrame{
 		add(comprarbt);
 		
 		bpPanel = new JPanel(new GridLayout(0,1));
-		bpPanel.setSize(500,500);
-		bpPanel.setLocation(743,90);
+		bpPanel.setSize(500,465);
+		bpPanel.setLocation(743,125);
 		bpPanel.setBackground(new Color(0,0,0,0));
 		bpPanel.setOpaque(false);
 		//bpPanel.setBorder(BorderFactory.createDashedBorder(Color.red));
@@ -510,10 +510,12 @@ public class MineDungeonsShop extends JFrame{
 	
 	public static void main(String[] args) {
 		MineDungeonsShop frame = new MineDungeonsShop();
+		frame.setTitle("MineDungeons Shop");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension sd = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation((sd.width - frame.getWidth()) / 2, (sd.height - frame.getHeight()) / 2);
 		frame.setVisible(true);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(""));
 		
 	}
 }
