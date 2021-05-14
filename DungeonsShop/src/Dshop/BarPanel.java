@@ -22,6 +22,7 @@ public class BarPanel extends JPanel{
 	
 	String[] conditions = new String[]{
 			"Somente Comuns","Somente Raros","Somente Únicos","Somente Armas", "Somente Armaduras"
+			,"Mais caros que 500", "Mais baratos que 500"
 		};
 	
 	public BarPanel(int index) {
@@ -67,22 +68,12 @@ public class BarPanel extends JPanel{
 					on.setVisible(true);
 					off.setVisible(false);
 					
-					
-					
-					MineDungeonsShop.filtros.add(index);
-					MineDungeonsShop.escrever();
-					
 				}else {
 					off.setVisible(true);
 					on.setVisible(false);
-					for (int i = 0; i < MineDungeonsShop.filtros.size(); i++) {
-						if(MineDungeonsShop.filtros.get(i)==index) {
-							MineDungeonsShop.filtros.remove(i);
-						}
-					}
-					MineDungeonsShop.escrever();
+					
 				}
-				System.out.println("ck = "+MineDungeonsShop.filtros);
+				
 			}
 		});
 		

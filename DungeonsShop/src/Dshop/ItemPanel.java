@@ -17,6 +17,10 @@ import javax.swing.*;
 import javafx.scene.image.Image;
 
 public class ItemPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel pnEme = new JPanel();
 	JPanel pnImg = new JPanel();
 	JPanel pnall;
@@ -26,40 +30,43 @@ public class ItemPanel extends JPanel{
 	ImageIcon frameIcon = new ImageIcon(getClass().getResource("Frame.png"));
 	JLabel frame = new JLabel(frameIcon);
 	JLabel item, nome ,preco;
-	int[] precos = new int[10];
+	
 	
 	JCheckBox ck = new JCheckBox();
 
-	String[] itens = new String[] {
-			"Guarda","Incendiária","Luvas","Mago","MagoDaSelva",
-			"Mercenario","Ocelote","Picareta","PresasDoGelo","Tempestuoso"
-	};
 	ImageIcon btoff = new ImageIcon(getClass().getResource("buyButton20X21.png"));
 	ImageIcon bton = new ImageIcon(getClass().getResource("buyButtonON20X21.png"));
 	
 	ArrayList<Integer> selecionados = new ArrayList<>();
 	
 	
-	
 	public ItemPanel(int index){
 
-		for (int i = 0; i < precos.length; i++) {
-			precos[i]=(int) (Math.random()*500);
+		if(MineDungeonsShop.listacomuns.get(index-1).contentEquals("Y")) {
+			setBorder(BorderFactory.createLineBorder(new Color(156, 156, 156)));
 		}
-		init();
-		def(index);
+		if(MineDungeonsShop.listararos.get(index-1).contentEquals("Y")) {
+			setBorder(BorderFactory.createLineBorder(new Color(26, 199, 49)));
+		}
+		if(MineDungeonsShop.listaunicos.get(index-1).contentEquals("Y")){
+			setBorder(BorderFactory.createLineBorder(new Color(247, 121, 25)));
+		}
+
 		
-		item = new JLabel(new ImageIcon(getClass().getResource(itens[index]+".png")));
-		preco = new JLabel(String.valueOf(precos[index]));
-		nome = new JLabel(itens[index],SwingConstants.CENTER);
+		
+		init();
+		def(index-1);
+		item = new JLabel(new ImageIcon(getClass().getResource(MineDungeonsShop.nomes.get(index-1)+".png")));
+		preco = new JLabel(String.valueOf(MineDungeonsShop.precos.get(index-1)));
+		nome = new JLabel(MineDungeonsShop.nomes.get(index-1),SwingConstants.CENTER);
 		pnEme.add(emerald);
 		pnEme.add(preco);
 		pnImg.setLayout(new GridLayout(0,1));
 		pnImg.add(item);
 		preco.setForeground(Color.white);
 		nome.setForeground(Color.white);
-		preco.setFont(new Font("Courier new", 0,15));
-		nome.setFont(new Font("Courier new", 0,15));
+		preco.setFont(new Font("Courier new", 0,12));
+		nome.setFont(new Font("Courier new", 0,12));
 		pnEme.setBackground(null);
 		pnImg.setBackground(null);
 		
@@ -91,20 +98,15 @@ public class ItemPanel extends JPanel{
 	public void def(int index) {
 		ck.addActionListener(new ActionListener() {
 			
-			public void aloga() {
-				
-			}
-			
 			public void actionPerformed(ActionEvent arg0) {
 				if(ck.isSelected()) {
 					ck.setIcon(bton);
-					MineDungeonsShop.selected.add(index);
+					MineDungeonsShop.selected.add(index-1);
 					
 				}else {
 					ck.setIcon(btoff);
-					
 					for (int i = 0; i < MineDungeonsShop.selected.size(); i++) {
-						if(MineDungeonsShop.selected.get(i)==index) {
+						if(MineDungeonsShop.selected.get(i)==index-1) {
 							MineDungeonsShop.selected.remove(i);
 						}
 					}
@@ -115,10 +117,10 @@ public class ItemPanel extends JPanel{
 	}
 
 	public void init() {
-		setOpaque(false);
+		//setOpaque(false);
 		setSize(111,180);
 		setLayout(new BorderLayout(0,0));
-		setBorder(BorderFactory.createLineBorder(Color.white,3));
+		
 		setBackground(new Color(13,8,13));
 	}
 
