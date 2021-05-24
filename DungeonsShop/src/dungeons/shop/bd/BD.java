@@ -1,7 +1,7 @@
-package Dshop;
+package dungeons.shop.bd;
 import java.sql.*;
 import javax.swing.JOptionPane;
-public class bd {
+public class BD {
 	
 	public Connection c = null;
 	private final String driver = "com.mysql.jdbc.Driver";
@@ -16,7 +16,7 @@ public class bd {
 		try{
 			Class.forName(driver);
 			c = DriverManager.getConnection(url,login,senha);
-			System.out.println("C - Conectou");
+			System.out.println("Conectou");
 			return true;
 		}
 			catch (ClassNotFoundException erro){
@@ -32,7 +32,7 @@ public class bd {
 	public void close(){
 		try{
 			c.close();
-			System.out.println("C - Desconectou");
+			System.out.println("Desconectou");
 		}catch(SQLException erro){
 			
 		}

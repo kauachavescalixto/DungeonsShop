@@ -1,4 +1,4 @@
-package Dshop;
+package dungeons.shop.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import dungeons.shop.bd.CallDatabase;
 import javafx.scene.image.Image;
 
 public class ItemPanel extends JPanel{
@@ -42,13 +43,13 @@ public class ItemPanel extends JPanel{
 	
 	public ItemPanel(int index){
 
-		if(MineDungeonsShop.listacomuns.get(index-1).contentEquals("Y")) {
+		if(CallDatabase.listacomuns.get(index-1).contentEquals("Y")) {
 			setBorder(BorderFactory.createLineBorder(new Color(156, 156, 156)));
 		}
-		if(MineDungeonsShop.listararos.get(index-1).contentEquals("Y")) {
+		if(CallDatabase.listararos.get(index-1).contentEquals("Y")) {
 			setBorder(BorderFactory.createLineBorder(new Color(26, 199, 49)));
 		}
-		if(MineDungeonsShop.listaunicos.get(index-1).contentEquals("Y")){
+		if(CallDatabase.listaunicos.get(index-1).contentEquals("Y")){
 			setBorder(BorderFactory.createLineBorder(new Color(247, 121, 25)));
 		}
 
@@ -57,14 +58,14 @@ public class ItemPanel extends JPanel{
 		init();
 		def(index-1);
 		try {
-			item = new JLabel(new ImageIcon(getClass().getResource(MineDungeonsShop.nomes.get(index-1)+".png")));
+			item = new JLabel(new ImageIcon(getClass().getResource(CallDatabase.nomes.get(index-1)+".png")));
 			pnImg.add(item);
 		} catch (Exception e) {
 			
 		}
 		
-		preco = new JLabel(String.valueOf(MineDungeonsShop.precos.get(index-1))+" R$");
-		nome = new JLabel(MineDungeonsShop.nomes.get(index-1),SwingConstants.CENTER);
+		preco = new JLabel(String.valueOf(CallDatabase.precos.get(index-1))+" R$");
+		nome = new JLabel(CallDatabase.nomes.get(index-1),SwingConstants.CENTER);
 		pnEme.add(emerald);
 		pnEme.add(preco);
 		pnImg.setLayout(new GridLayout(0,1));
@@ -107,13 +108,13 @@ public class ItemPanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				if(ck.isSelected()) {
 					ck.setIcon(bton);
-					MineDungeonsShop.selected.add(index-1);
+					CallDatabase.selected.add(index-1);
 					
 				}else {
 					ck.setIcon(btoff);
-					for (int i = 0; i < MineDungeonsShop.selected.size(); i++) {
-						if(MineDungeonsShop.selected.get(i)==index-1) {
-							MineDungeonsShop.selected.remove(i);
+					for (int i = 0; i < CallDatabase.selected.size(); i++) {
+						if(CallDatabase.selected.get(i)==index-1) {
+							CallDatabase.selected.remove(i);
 						}
 					}
 				}
