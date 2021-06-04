@@ -39,6 +39,8 @@ import javax.xml.namespace.QName;
 
 import org.w3c.dom.ls.LSInput;
 
+import com.mysql.jdbc.Statement;
+
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Group;
@@ -201,16 +203,22 @@ public class MineDungeonsShop extends JFrame {
 
 			while (rs.next()) {
 				try {
-					String[] dados = new String[qtdeColunas];
-					for (int i = 1; i <= qtdeColunas; i++) {
-						dados[i - 1] = rs.getString(i);
-					}
+					
 					IDdositensdobd.add(Integer.parseInt(rs.getString("id")));
 					precos.add(Integer.parseInt(rs.getString("preco")));
 					nomes.add(rs.getString("nome"));
 					listacomuns.add(rs.getString("comum"));
 					listararos.add(rs.getString("raro"));
 					listaunicos.add(rs.getString("unico"));
+					
+					
+					
+					
+					String[] dados = new String[qtdeColunas];
+					for (int i = 1; i <= qtdeColunas; i++) {
+						dados[i - 1] = rs.getString(i);
+					}
+					
 				} catch (SQLException erro) {
 					System.out.println(erro.toString());
 				}
@@ -226,6 +234,14 @@ public class MineDungeonsShop extends JFrame {
 				}
 			}
 
+			for (int i = 1; i < IDdositensdobd.size(); i++) {
+				
+				String sql = "update itens2 set id = "+i+" where nome = \""+nomes.get(i-1)+"\"";
+				st = bd.c.prepareStatement(sql);
+				st.execute();
+			}
+			
+			
 			Nresultados = IDdositensdobd.size();
 			resultados.setText(Nresultados + " Resultados");
 
@@ -262,7 +278,7 @@ public class MineDungeonsShop extends JFrame {
 		painelitens.repaint();
 
 		for (int i = 0; i < IDdositensdobd.size(); i++) {
-
+			
 			panel.add(new ItemPanel(IDdositensdobd.get(i)));
 
 		}
@@ -1153,6 +1169,7 @@ public class MineDungeonsShop extends JFrame {
 		});
 	}
 
+	
 	public static void main(String[] args) {
 		MineDungeonsShop frame = new MineDungeonsShop();
 		frame.setTitle("MineDungeons Shop");

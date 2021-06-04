@@ -30,15 +30,17 @@ public class itensDAO {
 			resultSet = statement.executeQuery();
 			resultSet.next();
 
-			itens.setId(Integer.parseInt(resultSet.getString(1)));
-			itens.setNome(resultSet.getString(2));
-			itens.setComum(resultSet.getString(3));
-			itens.setRaro(resultSet.getString(4));
-			itens.setUnico(resultSet.getString(5));
-			itens.setArma(resultSet.getString(6));
-			itens.setArmadura(resultSet.getString(7));
-			itens.setPreco(resultSet.getString(8));
-
+			
+			itens.setNome(resultSet.getString(1));
+			itens.setComum(resultSet.getString(2));
+			itens.setRaro(resultSet.getString(3));
+			itens.setUnico(resultSet.getString(4));
+			itens.setArma(resultSet.getString(5));
+			itens.setArmadura(resultSet.getString(6));
+			itens.setPreco(resultSet.getString(7));
+			itens.setId(Integer.parseInt(resultSet.getString(8)));
+			
+			
 			return true;
 		} catch (SQLException erro) {
 			return false;
@@ -55,14 +57,21 @@ public class itensDAO {
 				sql = "insert into itens2 values (?,?,?,?,?,?,?,?)";
 				statement = bd.c.prepareStatement(sql);
 
-				statement.setInt(1, itens.getId());
-				statement.setString(2, itens.getNome());
-				statement.setString(3, itens.getComum());
-				statement.setString(4, itens.getRaro());
-				statement.setString(5, itens.getUnico());
-				statement.setString(6, itens.getArma());
-				statement.setString(7, itens.getArmadura());
-				statement.setString(8, itens.getPreco());
+				
+				statement.setString(1, itens.getNome());
+				statement.setString(2, itens.getComum());
+				statement.setString(3, itens.getRaro());
+				statement.setString(4, itens.getUnico());
+				statement.setString(5, itens.getArma());
+				statement.setString(6, itens.getArmadura());
+				statement.setString(7, itens.getPreco());
+				if(itens.getId() == 0) {
+					statement.setInt(8, (MineDungeonsShop.IDdositensdobd.size()+1));
+					
+				}else {
+					statement.setInt(8, itens.getId());
+				}
+
 
 			} else if (operacao == ALTERACAO) {
 				sql = "update itens2 set nome = ?, comum = ?, raro = ?, unico = ?, arma = ?, armadura = ?, preco = ? where id =?";
@@ -79,7 +88,8 @@ public class itensDAO {
 				sql = "delete from itens2 where id = ? ;";
 				statement = bd.c.prepareStatement(sql);
 				statement.setInt(1, itens.getId() + 1);
-				delete();
+				//delete();
+				
 			}
 			if (statement.executeUpdate() == 0) {
 				men = "Falha na operação";

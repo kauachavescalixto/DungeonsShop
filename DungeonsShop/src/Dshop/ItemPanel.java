@@ -41,16 +41,20 @@ public class ItemPanel extends JPanel{
 	
 	
 	public ItemPanel(int index){
-
-		if(MineDungeonsShop.listacomuns.get(index-1).contentEquals("Y")) {
-			setBorder(BorderFactory.createLineBorder(new Color(156, 156, 156)));
-		}
-		if(MineDungeonsShop.listararos.get(index-1).contentEquals("Y")) {
-			setBorder(BorderFactory.createLineBorder(new Color(26, 199, 49)));
-		}
-		if(MineDungeonsShop.listaunicos.get(index-1).contentEquals("Y")){
-			setBorder(BorderFactory.createLineBorder(new Color(247, 121, 25)));
-		}
+		
+			
+		
+			if(MineDungeonsShop.listacomuns.get(index-1).contentEquals("Y")) {
+				setBorder(BorderFactory.createLineBorder(new Color(156, 156, 156)));
+			}
+			if(MineDungeonsShop.listararos.get(index-1).contentEquals("Y")) {
+				setBorder(BorderFactory.createLineBorder(new Color(26, 199, 49)));
+			}
+			if(MineDungeonsShop.listaunicos.get(index-1).contentEquals("Y")){
+				setBorder(BorderFactory.createLineBorder(new Color(247, 121, 25)));
+			}
+		
+		
 
 		
 		
@@ -97,7 +101,6 @@ public class ItemPanel extends JPanel{
 		lpn.setOpaque(false);
 		add(lpn);
 
-		
 		
 	}
 
